@@ -1,0 +1,5 @@
+sector_code,sector_name,tariff_2026_eur_per_t,tariff_2030_eur_per_t,tariff_2035_eur_per_t,var95_tariff_2035_eur_per_t,mean_intensity_haircut_pct,mean_unhedged_cbam_share_pct,cumulative_eu_cbam_liability_2026_2035_meur,cumulative_uk_cbam_liability_2026_2035_mgbp
+aluminum,Aluminum,61.26,104.33,181.65,220.91,94.62,98.59,947.64,84.13
+cement,Cement,0.0,18.39,57.66,70.11,95.03,67.53,100.81,13.73
+fertilizers,Fertilizers (Ammonia & Urea),20.75,69.95,156.52,190.34,94.83,97.86,207.59,27.8
+iron_and_steel,Iron & Steel,90.69,134.52,210.83,256.39,94.81,98.83,7924.61,620.23

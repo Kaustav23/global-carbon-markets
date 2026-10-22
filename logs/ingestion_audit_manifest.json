@@ -1,0 +1,62 @@
+[
+  {
+    "dataset_key": "eea_eutl_sector_emissions",
+    "jurisdiction": "EU_ETS",
+    "source_url": "https://datahub.io/core/eu-emissions-trading-system/_r/-/data/eu-ets-sector-emissions.csv",
+    "ingestion_mode": "LIVE_HTTP_GET",
+    "local_csv_path": "data\\raw\\eea_eutl_sector_emissions.csv",
+    "local_parquet_path": "data\\raw\\eea_eutl_sector_emissions.parquet",
+    "sha256_csv": "bb938ffabf1079d0d1dbe8630381c10b796117814531a7baba12eb3b7b0970ea",
+    "sha256_parquet": "db1cfec541890c031b9b753361578fc29ed4a9a8c238576bc05132d189453145",
+    "row_count": 161,
+    "column_count": 3,
+    "temporal_coverage": "2005-2025",
+    "timestamp_utc": "2026-10-22T16:04:17Z",
+    "status": "VALIDATED_OK"
+  },
+  {
+    "dataset_key": "world_bank_icap_multi_hub_panel",
+    "jurisdiction": "GLOBAL_7_HUBS",
+    "source_url": "https://datacatalog.worldbank.org/search/dataset/0042051/carbon-pricing-dashboard",
+    "ingestion_mode": "DETERMINISTIC_SNAPSHOT_FALLBACK",
+    "local_csv_path": "data\\raw\\world_bank_icap_historical_panel.csv",
+    "local_parquet_path": "data\\raw\\world_bank_icap_historical_panel.parquet",
+    "sha256_csv": "10de29ad51d58e0f7f432287d97bb6cbb39feae916ff3b2f688120e5f329feb9",
+    "sha256_parquet": "b18a97ecb5ecf51d9fe41a40be74a6eb7e50923290593df58fd15929ad91f032",
+    "row_count": 63,
+    "column_count": 9,
+    "temporal_coverage": "2018-2026",
+    "timestamp_utc": "2026-10-22T16:04:17Z",
+    "status": "VALIDATED_OK"
+  },
+  {
+    "dataset_key": "carb_wci_joint_auction_series",
+    "jurisdiction": "CA_WCI",
+    "source_url": "https://ww2.arb.ca.gov/resources/documents/cap-and-trade-program-data-dashboard-files",
+    "ingestion_mode": "DETERMINISTIC_SNAPSHOT_FALLBACK",
+    "local_csv_path": "data\\raw\\carb_wci_allowance_prices.csv",
+    "local_parquet_path": "data\\raw\\carb_wci_allowance_prices.parquet",
+    "sha256_csv": "aaf896dc8bc5393806566c3f674dc6ab865f87efb7bacbf2d4be080016a089fb",
+    "sha256_parquet": "c3819139b245c1b182733dad2ceda6e2af885d47d1d2d0e721c3f389fb03e490",
+    "row_count": 18,
+    "column_count": 4,
+    "temporal_coverage": "2022Q1-2026Q2",
+    "timestamp_utc": "2026-10-22T16:04:17Z",
+    "status": "VALIDATED_OK"
+  },
+  {
+    "dataset_key": "india_bee_ccts_9sectors_registry",
+    "jurisdiction": "INDIA_CCTS",
+    "source_url": "https://indiancarbonmarket.gov.in/notification/MTc=",
+    "ingestion_mode": "DETERMINISTIC_SNAPSHOT_FALLBACK",
+    "local_csv_path": "data\\raw\\india_bee_ccts_9sectors.csv",
+    "local_parquet_path": "data\\raw\\india_bee_ccts_9sectors.parquet",
+    "sha256_csv": "f8f5f3e8f66a497be58f3b22e1e0714887d78509464c0ff6cd29383fc6f64ea8",
+    "sha256_parquet": "f885f99855e4caf64022ed9307d09836944cf77f426e6586d4c876902adf2520",
+    "row_count": 9,
+    "column_count": 12,
+    "temporal_coverage": "2026-2035",
+    "timestamp_utc": "2026-10-22T16:04:17Z",
+    "status": "VALIDATED_OK"
+  }
+]

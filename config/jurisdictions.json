@@ -1,0 +1,575 @@
+{
+  "metadata": {
+    "project_title": "Global Carbon Compliance Architecture: India's CCTS vs. The World (2026-2035)",
+    "lead_architect": "Kaustav Goswami",
+    "version": "2.0.0",
+    "simulation_horizon": {
+      "start_year": 2026,
+      "end_year": 2035,
+      "trading_days_per_year": 252,
+      "monte_carlo_paths": 2500,
+      "random_seed": 42
+    }
+  },
+  "fx_spot_2026_benchmarks": {
+    "EUR_USD": 1.09,
+    "GBP_USD": 1.29,
+    "GBP_EUR": 1.1835,
+    "CAD_USD": 0.735,
+    "NZD_USD": 0.61,
+    "KRW_USD": 0.00074,
+    "CNY_USD": 0.14,
+    "INR_USD": 0.0119,
+    "INR_EUR": 0.01092
+  },
+  "open_access_endpoints": {
+    "eea_eutl_datapackage": "https://datahub.io/core/eu-emissions-trading-system/_r/-/datapackage.json",
+    "eea_eutl_full_csv": "https://datahub.io/core/eu-emissions-trading-system/_r/-/data/eu-ets.csv",
+    "eea_eutl_sector_csv": "https://datahub.io/core/eu-emissions-trading-system/_r/-/data/eu-ets-sector-emissions.csv",
+    "eea_datahub_portal": "https://www.eea.europa.eu/data-and-maps/data/european-union-emissions-trading-scheme-17",
+    "world_bank_catalog": "https://datacatalog.worldbank.org/search/dataset/0042051/carbon-pricing-dashboard",
+    "world_bank_compliance_portal": "https://carbonpricingdashboard.worldbank.org/compliance/price",
+    "icap_price_explorer": "https://icapcarbonaction.com/en/ets-prices",
+    "icap_india_ccts_factsheet": "https://icapcarbonaction.com/en/ets-pdf-download/125",
+    "icap_china_ets_factsheet": "https://icapcarbonaction.com/en/ets-pdf-download/55",
+    "icap_korea_ets_factsheet": "https://icapcarbonaction.com/en/ets-pdf-download/47",
+    "carb_dashboard_files": "https://ww2.arb.ca.gov/resources/documents/cap-and-trade-program-data-dashboard-files",
+    "india_icm_portal": "https://indiancarbonmarket.gov.in/notification/MTc=",
+    "india_ec_amendment_act_2022": "https://www.beeindia.gov.in/WriteReadData/L45218/1772711141.pdf",
+    "uk_ets_registry_reports": "https://reports.view-emissions-trading-registry.service.gov.uk/ets-reports.html",
+    "nz_ets_data_sources": "https://environment.govt.nz/what-government-is-doing/areas-of-work/climate-change/ets/nz-ets-market/data-sources/"
+  },
+  "jurisdictions": {
+    "EU_ETS": {
+      "name": "European Union Emissions Trading System (Phase IV)",
+      "regime_type": "absolute_cap",
+      "currency": "EUR",
+      "allowance_unit": "EUA",
+      "base_cap_2026_mt": 1386.0,
+      "linear_reduction_factor_schedule": {
+        "2026_2027": 0.043,
+        "2028_2035": 0.044
+      },
+      "real_output_growth_rate_gY": 0.015,
+      "autonomous_abatement_rate": 0.038,
+      "empirical_price_band_2026_local": [
+        75.0,
+        95.0
+      ],
+      "initial_spot_price_2026_local": 84.5,
+      "initial_tnac_mt": 1112.0,
+      "banking_allowed": true,
+      "borrowing_allowed": false,
+      "stability_mechanism": {
+        "type": "MSR",
+        "description": "EU Market Stability Reserve (Decision (EU) 2015/1814 as amended)",
+        "tnac_upper_threshold_mt": 833.0,
+        "tnac_buffer_upper_mt": 1096.0,
+        "intake_rate_standard": 0.24,
+        "tnac_lower_threshold_mt": 400.0,
+        "release_volume_mt": 100.0,
+        "invalidation_above_prev_year_auction": true,
+        "article_29a_price_spike_multiplier": 2.4
+      },
+      "sde_parameters": {
+        "kappa_mean_reversion": 1.85,
+        "theta_long_run_2026_local": 86.0,
+        "theta_annual_drift_pct": 0.048,
+        "sigma_volatility": 0.27,
+        "cev_elasticity_beta": 1.0,
+        "jump_intensity_lambda": 0.35,
+        "jump_mean_pct": 0.035,
+        "jump_std_pct": 0.075
+      }
+    },
+    "UK_ETS": {
+      "name": "United Kingdom Emissions Trading Scheme",
+      "regime_type": "absolute_cap",
+      "currency": "GBP",
+      "allowance_unit": "UKA",
+      "base_cap_2026_mt": 93.5,
+      "linear_reduction_factor_schedule": {
+        "2026_2030": 0.042,
+        "2031_2035": 0.044
+      },
+      "real_output_growth_rate_gY": 0.014,
+      "autonomous_abatement_rate": 0.036,
+      "empirical_price_band_2026_local": [
+        42.0,
+        65.0
+      ],
+      "initial_spot_price_2026_local": 52.8,
+      "initial_tnac_mt": 44.0,
+      "banking_allowed": true,
+      "borrowing_allowed": false,
+      "stability_mechanism": {
+        "type": "ARP_AND_CCM",
+        "description": "UK Auction Reserve Price (ARP) & Cost Containment Mechanism (CCM)",
+        "auction_reserve_price_local": 22.0,
+        "ccm_trigger_multiplier_2yr_avg": 2.5,
+        "ccm_consecutive_months": 3,
+        "ccm_max_release_volume_mt": 12.5
+      },
+      "sde_parameters": {
+        "kappa_mean_reversion": 1.65,
+        "theta_long_run_2026_local": 55.0,
+        "theta_annual_drift_pct": 0.045,
+        "sigma_volatility": 0.3,
+        "cev_elasticity_beta": 1.0,
+        "jump_intensity_lambda": 0.3,
+        "jump_mean_pct": 0.03,
+        "jump_std_pct": 0.08
+      }
+    },
+    "CA_WCI": {
+      "name": "California-Quebec WCI Cap-and-Invest Program",
+      "regime_type": "absolute_cap",
+      "currency": "USD",
+      "allowance_unit": "CCA",
+      "base_cap_2026_mt": 268.5,
+      "linear_reduction_factor_schedule": {
+        "2026_2030": 0.048,
+        "2031_2035": 0.05
+      },
+      "real_output_growth_rate_gY": 0.022,
+      "autonomous_abatement_rate": 0.035,
+      "empirical_price_band_2026_local": [
+        35.0,
+        45.0
+      ],
+      "initial_spot_price_2026_local": 39.4,
+      "initial_tnac_mt": 310.0,
+      "banking_allowed": true,
+      "borrowing_allowed": false,
+      "stability_mechanism": {
+        "type": "WCI_COLLAR_AND_APCR",
+        "description": "Auction Reserve Price Floor, Two-Tier APCR & Hard Price Ceiling (5% Real + CPI)",
+        "auction_reserve_floor_2026_local": 25.85,
+        "annual_real_escalation_rate": 0.05,
+        "assumed_cpi_inflation": 0.024,
+        "apcr_tier_1_price_2026_local": 59.9,
+        "apcr_tier_1_volume_mt": 15.5,
+        "apcr_tier_2_price_2026_local": 76.85,
+        "apcr_tier_2_volume_mt": 15.5,
+        "hard_price_ceiling_2026_local": 94.8
+      },
+      "sde_parameters": {
+        "kappa_mean_reversion": 2.15,
+        "theta_long_run_2026_local": 40.5,
+        "theta_annual_drift_pct": 0.068,
+        "sigma_volatility": 0.18,
+        "cev_elasticity_beta": 1.0,
+        "jump_intensity_lambda": 0.2,
+        "jump_mean_pct": 0.02,
+        "jump_std_pct": 0.045
+      }
+    },
+    "NZ_ETS": {
+      "name": "New Zealand Emissions Trading Scheme",
+      "regime_type": "absolute_cap",
+      "currency": "NZD",
+      "allowance_unit": "NZU",
+      "base_cap_2026_mt": 24.5,
+      "linear_reduction_factor_schedule": {
+        "2026_2030": 0.046,
+        "2031_2035": 0.048
+      },
+      "real_output_growth_rate_gY": 0.018,
+      "autonomous_abatement_rate": 0.034,
+      "empirical_price_band_2026_local": [
+        52.0,
+        74.0
+      ],
+      "initial_spot_price_2026_local": 64.5,
+      "initial_tnac_mt": 148.0,
+      "banking_allowed": true,
+      "borrowing_allowed": false,
+      "stability_mechanism": {
+        "type": "NZ_AUCTION_FLOOR_AND_CCR",
+        "description": "NZ-ETS Auction Reserve Price Floor & Two-Tier Cost Containment Reserve (CCR)",
+        "auction_reserve_floor_2026_local": 64.0,
+        "floor_annual_escalation_rate": 0.055,
+        "ccr_tier_1_trigger_2026_local": 184.0,
+        "ccr_tier_1_volume_mt": 2.8,
+        "ccr_tier_2_trigger_2026_local": 230.0,
+        "ccr_tier_2_volume_mt": 4.9
+      },
+      "sde_parameters": {
+        "kappa_mean_reversion": 1.55,
+        "theta_long_run_2026_local": 66.0,
+        "theta_annual_drift_pct": 0.052,
+        "sigma_volatility": 0.25,
+        "cev_elasticity_beta": 1.0,
+        "jump_intensity_lambda": 0.25,
+        "jump_mean_pct": -0.015,
+        "jump_std_pct": 0.065
+      }
+    },
+    "K_ETS": {
+      "name": "Korea Emissions Trading Scheme (Phase 4)",
+      "regime_type": "absolute_cap",
+      "currency": "KRW",
+      "allowance_unit": "KAU",
+      "base_cap_2026_mt": 515.0,
+      "linear_reduction_factor_schedule": {
+        "2026_2030": 0.038,
+        "2031_2035": 0.042
+      },
+      "real_output_growth_rate_gY": 0.024,
+      "autonomous_abatement_rate": 0.03,
+      "empirical_price_band_2026_local": [
+        9500.0,
+        16500.0
+      ],
+      "initial_spot_price_2026_local": 12400.0,
+      "initial_tnac_mt": 42.0,
+      "banking_allowed": true,
+      "borrowing_allowed": true,
+      "stability_mechanism": {
+        "type": "K_MSR",
+        "description": "Phase 4 Korean Market Stability Reserve (K-MSR) Quantity Band & Price Corridor",
+        "floor_intervention_price_local": 8500.0,
+        "ceiling_intervention_price_local": 28000.0,
+        "kmsr_reserve_pool_mt": 25.0,
+        "max_annual_release_mt": 10.0,
+        "max_annual_absorption_mt": 12.0
+      },
+      "sde_parameters": {
+        "kappa_mean_reversion": 1.75,
+        "theta_long_run_2026_local": 13200.0,
+        "theta_annual_drift_pct": 0.055,
+        "sigma_volatility": 0.24,
+        "cev_elasticity_beta": 1.0,
+        "jump_intensity_lambda": 0.22,
+        "jump_mean_pct": 0.025,
+        "jump_std_pct": 0.06
+      }
+    },
+    "CHINA_ETS": {
+      "name": "China National Emissions Trading System",
+      "regime_type": "output_adjusted_intensity",
+      "currency": "CNY",
+      "allowance_unit": "CEA",
+      "covered_emissions_2026_mt": 8000.0,
+      "real_output_growth_rate_gY": 0.045,
+      "intensity_tightening_schedule": {
+        "2026_2027": 0.032,
+        "2028_2035": 0.05
+      },
+      "transition_to_absolute_cap_year": 2028,
+      "empirical_price_band_2026_local": [
+        72.0,
+        102.0
+      ],
+      "initial_spot_price_2026_local": 86.5,
+      "banking_allowed": true,
+      "borrowing_allowed": false,
+      "ccer_offset_limit_pct": 0.05,
+      "stability_mechanism": {
+        "type": "MEE_BENCHMARK_ADJUSTMENT",
+        "description": "MEE Discretionary Allowance Banking Carryover Rules & Benchmark Tightening",
+        "soft_floor_local": 65.0,
+        "soft_ceiling_local": 160.0
+      },
+      "sde_parameters": {
+        "kappa_mean_reversion": 2.35,
+        "theta_long_run_2026_local": 89.0,
+        "theta_annual_drift_pct": 0.058,
+        "sigma_volatility": 0.16,
+        "cev_elasticity_beta": 1.0,
+        "jump_intensity_lambda": 0.18,
+        "jump_mean_pct": 0.03,
+        "jump_std_pct": 0.045
+      }
+    },
+    "INDIA_CCTS": {
+      "name": "India Carbon Credit Trading Scheme (BEE / ICM)",
+      "regime_type": "output_adjusted_intensity",
+      "currency": "INR",
+      "allowance_unit": "CCC",
+      "covered_emissions_2026_mt": 742.5,
+      "real_output_growth_rate_gY": 0.068,
+      "intensity_tightening_schedule": {
+        "2026_2028": 0.028,
+        "2029_2035": 0.052
+      },
+      "empirical_price_band_2026_local": [
+        700.0,
+        1500.0
+      ],
+      "initial_spot_price_2026_local": 980.0,
+      "banking_allowed": true,
+      "borrowing_allowed": false,
+      "stability_mechanism": {
+        "type": "BEE_SECTION_26_PENALTY_AND_CERC_BAND",
+        "description": "Section 26(1A) Energy Conservation (Amendment) Act 2022 Penalty (2x Average Clearing Price) & CERC Exchange Band",
+        "statutory_penalty_multiplier": 2.0,
+        "cerc_floor_price_2026_local": 650.0,
+        "cerc_forbearance_ceiling_2026_local": 1850.0,
+        "band_annual_escalation_rate": 0.045,
+        "penalty_creates_physical_retirement": false
+      },
+      "sde_parameters": {
+        "kappa_mean_reversion": 2.2,
+        "theta_long_run_2026_local": 1050.0,
+        "theta_annual_drift_pct": 0.065,
+        "sigma_volatility": 0.25,
+        "cev_elasticity_beta": 1.0,
+        "jump_intensity_lambda": 0.28,
+        "jump_mean_pct": 0.04,
+        "jump_std_pct": 0.07
+      }
+    }
+  },
+  "india_ccts_sectors": {
+    "iron_and_steel": {
+      "sector_name": "Iron & Steel",
+      "cbam_exposed": true,
+      "base_output_2026_mt_product": 148.0,
+      "baseline_intensity_2026_tco2_per_t": 2.28,
+      "actual_initial_intensity_2026_tco2_per_t": 2.36,
+      "annual_output_growth_gY": 0.072,
+      "annual_target_tightening_gamma_phase1": 0.026,
+      "annual_target_tightening_gamma_phase2": 0.048,
+      "abatement_cost_elasticity_inr": 1150.0
+    },
+    "cement": {
+      "sector_name": "Cement",
+      "cbam_exposed": true,
+      "base_output_2026_mt_product": 415.0,
+      "baseline_intensity_2026_tco2_per_t": 0.61,
+      "actual_initial_intensity_2026_tco2_per_t": 0.63,
+      "annual_output_growth_gY": 0.068,
+      "annual_target_tightening_gamma_phase1": 0.025,
+      "annual_target_tightening_gamma_phase2": 0.045,
+      "abatement_cost_elasticity_inr": 920.0
+    },
+    "aluminum": {
+      "sector_name": "Aluminum",
+      "cbam_exposed": true,
+      "base_output_2026_mt_product": 4.4,
+      "baseline_intensity_2026_tco2_per_t": 14.8,
+      "actual_initial_intensity_2026_tco2_per_t": 15.35,
+      "annual_output_growth_gY": 0.065,
+      "annual_target_tightening_gamma_phase1": 0.03,
+      "annual_target_tightening_gamma_phase2": 0.055,
+      "abatement_cost_elasticity_inr": 1320.0
+    },
+    "fertilizers": {
+      "sector_name": "Fertilizers (Ammonia & Urea)",
+      "cbam_exposed": true,
+      "base_output_2026_mt_product": 31.5,
+      "baseline_intensity_2026_tco2_per_t": 1.72,
+      "actual_initial_intensity_2026_tco2_per_t": 1.78,
+      "annual_output_growth_gY": 0.045,
+      "annual_target_tightening_gamma_phase1": 0.028,
+      "annual_target_tightening_gamma_phase2": 0.05,
+      "abatement_cost_elasticity_inr": 980.0
+    },
+    "chlor_alkali": {
+      "sector_name": "Chlor-Alkali",
+      "cbam_exposed": false,
+      "base_output_2026_mt_product": 5.2,
+      "baseline_intensity_2026_tco2_per_t": 1.18,
+      "actual_initial_intensity_2026_tco2_per_t": 1.22,
+      "annual_output_growth_gY": 0.058,
+      "annual_target_tightening_gamma_phase1": 0.027,
+      "annual_target_tightening_gamma_phase2": 0.049,
+      "abatement_cost_elasticity_inr": 860.0
+    },
+    "pulp_and_paper": {
+      "sector_name": "Pulp & Paper",
+      "cbam_exposed": false,
+      "base_output_2026_mt_product": 23.0,
+      "baseline_intensity_2026_tco2_per_t": 1.05,
+      "actual_initial_intensity_2026_tco2_per_t": 1.09,
+      "annual_output_growth_gY": 0.055,
+      "annual_target_tightening_gamma_phase1": 0.029,
+      "annual_target_tightening_gamma_phase2": 0.051,
+      "abatement_cost_elasticity_inr": 790.0
+    },
+    "petrochemicals": {
+      "sector_name": "Petrochemicals",
+      "cbam_exposed": false,
+      "base_output_2026_mt_product": 29.5,
+      "baseline_intensity_2026_tco2_per_t": 1.42,
+      "actual_initial_intensity_2026_tco2_per_t": 1.47,
+      "annual_output_growth_gY": 0.074,
+      "annual_target_tightening_gamma_phase1": 0.03,
+      "annual_target_tightening_gamma_phase2": 0.053,
+      "abatement_cost_elasticity_inr": 1080.0
+    },
+    "petroleum_refining": {
+      "sector_name": "Petroleum Refining",
+      "cbam_exposed": false,
+      "base_output_2026_mt_product": 258.0,
+      "baseline_intensity_2026_tco2_per_t": 0.24,
+      "actual_initial_intensity_2026_tco2_per_t": 0.25,
+      "annual_output_growth_gY": 0.042,
+      "annual_target_tightening_gamma_phase1": 0.026,
+      "annual_target_tightening_gamma_phase2": 0.048,
+      "abatement_cost_elasticity_inr": 1120.0
+    },
+    "textiles": {
+      "sector_name": "Textiles",
+      "cbam_exposed": false,
+      "base_output_2026_mt_product": 12.8,
+      "baseline_intensity_2026_tco2_per_t": 1.65,
+      "actual_initial_intensity_2026_tco2_per_t": 1.71,
+      "annual_output_growth_gY": 0.062,
+      "annual_target_tightening_gamma_phase1": 0.031,
+      "annual_target_tightening_gamma_phase2": 0.054,
+      "abatement_cost_elasticity_inr": 740.0
+    }
+  },
+  "cbam_architecture": {
+    "eu_cbam_free_allocation_factor_phi": {
+      "2026": 0.975,
+      "2027": 0.95,
+      "2028": 0.9,
+      "2029": 0.775,
+      "2030": 0.515,
+      "2031": 0.39,
+      "2032": 0.265,
+      "2033": 0.14,
+      "2034": 0.0,
+      "2035": 0.0
+    },
+    "uk_cbam_free_allocation_factor_phi": {
+      "2026": 1.0,
+      "2027": 0.95,
+      "2028": 0.89,
+      "2029": 0.78,
+      "2030": 0.55,
+      "2031": 0.42,
+      "2032": 0.28,
+      "2033": 0.14,
+      "2034": 0.0,
+      "2035": 0.0
+    },
+    "exposed_sector_benchmarks": {
+      "iron_and_steel": {
+        "eu_ets_product_benchmark_tco2_per_t": 1.328,
+        "uk_ets_product_benchmark_tco2_per_t": 1.35,
+        "india_avg_export_intensity_2026": 2.36,
+        "china_avg_export_intensity_2026": 1.98,
+        "india_eu_annual_export_volume_mt": 4.8,
+        "india_uk_annual_export_volume_mt": 0.65
+      },
+      "aluminum": {
+        "eu_ets_product_benchmark_tco2_per_t": 1.464,
+        "uk_ets_product_benchmark_tco2_per_t": 1.48,
+        "india_avg_export_intensity_2026": 15.35,
+        "india_direct_cbam_scope_intensity_2026": 2.15,
+        "china_direct_cbam_scope_intensity_2026": 1.85,
+        "india_eu_annual_export_volume_mt": 0.72,
+        "india_uk_annual_export_volume_mt": 0.11
+      },
+      "cement": {
+        "eu_ets_product_benchmark_tco2_per_t": 0.693,
+        "uk_ets_product_benchmark_tco2_per_t": 0.705,
+        "india_avg_export_intensity_2026": 0.63,
+        "china_avg_export_intensity_2026": 0.66,
+        "india_eu_annual_export_volume_mt": 0.35,
+        "india_uk_annual_export_volume_mt": 0.08
+      },
+      "fertilizers": {
+        "eu_ets_product_benchmark_tco2_per_t": 1.57,
+        "uk_ets_product_benchmark_tco2_per_t": 1.59,
+        "india_avg_export_intensity_2026": 1.78,
+        "china_avg_export_intensity_2026": 1.92,
+        "india_eu_annual_export_volume_mt": 0.22,
+        "india_uk_annual_export_volume_mt": 0.05
+      }
+    }
+  },
+  "article_6_mechanisms": {
+    "article_6_4_pacm": {
+      "share_of_proceeds_adaptation_levy_pct": 0.05,
+      "overall_mitigation_omge_cancellation_pct": 0.02,
+      "supervisory_body_issuance_fee_usd_per_t": 0.3
+    },
+    "article_6_2_itmo": {
+      "corresponding_adjustment_required": true,
+      "india_ndc_sovereign_opportunity_cost_usd_per_t": 9.5,
+      "host_abatement_supply_curve_intercept_usd": 14.0,
+      "host_abatement_supply_curve_slope_usd_per_mt": 0.45
+    }
+  },
+  "correlation_matrix": {
+    "hub_order": [
+      "EU_ETS",
+      "UK_ETS",
+      "CA_WCI",
+      "NZ_ETS",
+      "K_ETS",
+      "CHINA_ETS",
+      "INDIA_CCTS"
+    ],
+    "matrix": [
+      [
+        1.0,
+        0.78,
+        0.42,
+        0.35,
+        0.3,
+        0.18,
+        0.15
+      ],
+      [
+        0.78,
+        1.0,
+        0.38,
+        0.32,
+        0.28,
+        0.16,
+        0.14
+      ],
+      [
+        0.42,
+        0.38,
+        1.0,
+        0.4,
+        0.32,
+        0.2,
+        0.16
+      ],
+      [
+        0.35,
+        0.32,
+        0.4,
+        1.0,
+        0.29,
+        0.19,
+        0.15
+      ],
+      [
+        0.3,
+        0.28,
+        0.32,
+        0.29,
+        1.0,
+        0.34,
+        0.24
+      ],
+      [
+        0.18,
+        0.16,
+        0.2,
+        0.19,
+        0.34,
+        1.0,
+        0.38
+      ],
+      [
+        0.15,
+        0.14,
+        0.16,
+        0.15,
+        0.24,
+        0.38,
+        1.0
+      ]
+    ]
+  }
+}

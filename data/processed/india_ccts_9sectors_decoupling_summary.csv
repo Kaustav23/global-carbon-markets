@@ -1,0 +1,10 @@
+sector_code,sector_name,cbam_exposed,base_emissions_2026_mt,emissions_2035_intensity_regime_mt,emissions_2035_abs_cap_regime_mt,cumulative_emissions_intensity_2026_2035_mt,cumulative_emissions_abs_cap_2026_2035_mt,cumulative_decoupling_wedge_mt,annual_output_growth_gY,gamma_phase1_2026_2028,gamma_phase2_2029_2035,instantaneous_peaking_threshold_gamma_star,discrete_peaking_threshold_gamma_star,cumulative_neutral_gamma_star_2026_2035,peaks_before_2035
+iron_and_steel,Iron & Steel,True,337.44,437.64,206.85,3914.64,2721.45,1193.19,0.072,0.026,0.048,0.072,0.0672,0.1221,False
+cement,Cement,True,253.15,324.08,155.18,2912.84,2041.65,871.18,0.068,0.025,0.045,0.068,0.0637,0.1181,False
+aluminum,Aluminum,True,65.12,74.91,39.92,711.35,525.19,186.15,0.065,0.03,0.055,0.065,0.061,0.1151,False
+fertilizers,Fertilizers (Ammonia & Urea),True,54.18,54.13,33.21,549.97,436.96,113.01,0.045,0.028,0.05,0.045,0.0431,0.0951,True
+chlor_alkali,Chlor-Alkali,False,6.14,6.95,3.76,66.38,49.49,16.89,0.058,0.027,0.049,0.058,0.0548,0.1081,False
+pulp_and_paper,Pulp & Paper,False,24.15,26.16,14.8,255.33,194.77,60.56,0.055,0.029,0.051,0.055,0.0521,0.1051,False
+petrochemicals,Petrochemicals,False,41.89,52.99,25.68,479.98,337.84,142.13,0.074,0.03,0.053,0.074,0.0689,0.1241,False
+petroleum_refining,Petroleum Refining,False,61.92,61.3,37.96,625.72,499.38,126.34,0.042,0.026,0.048,0.042,0.0403,0.0921,True
+textiles,Textiles,False,21.12,23.77,12.95,227.81,170.33,57.47,0.062,0.031,0.054,0.062,0.0584,0.1121,False

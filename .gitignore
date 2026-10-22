@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*.class
+.pytest_cache/
+.streamlit/
+*.parquet.tmp
+venv/
+.env
+.DS_Store
+fix_encoding.py
+test.py
